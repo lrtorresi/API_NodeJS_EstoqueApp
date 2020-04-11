@@ -15,7 +15,7 @@ module.exports = {
             });
             return response.status(201).json({ Id, Segment });
         }
-        catch (ex) { return response.status(400).json({ msg: 'Erro ao cadastrar novo segmento.' }) }
+        catch (ex) { return response.status(400).json({ msg: 'Erro ao cadastrar um novo novo segmento.' }) }
     },
 
 
