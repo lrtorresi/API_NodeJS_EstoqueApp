@@ -1,0 +1,16 @@
+- User
+criar novo usuario - Feito
+deletar usuario - Feito
+selecionar usuarios - Feito
+
+- Segmentos 
+criar novo segmento - Feito
+listar segmento - Feito
+deletar segmento - Feito
+
+- Product
+cadastrar novo produto
+editar novo produto - Feito
+editar produtos - Feito
+listar produtos (informando as datas de vencimentos) - Feito
+listar produto por nome - Feito
