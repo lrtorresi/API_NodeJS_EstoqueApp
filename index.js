@@ -10,10 +10,10 @@ app.use(routes);
 
 //app.listen(3333); //Porta que vai rodar o NODEJS
 
-app.listen(process.env.PORT || 3000, function(){
+app.listen(process.env.PORT || 3333, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
   });
   
 app.get('/', function(req, res){
-    res.redirect('/Todo');
+    res.redirect('/API_Estoque');
  });

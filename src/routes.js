@@ -4,6 +4,8 @@ const UserController = require('./controllers/UserController');
 const SegmentController = require('./controllers/SegmentController');
 const ProductController = require('./controllers/ProductController');
 
+
+
 ////////////////////////////////////// Usuarios //////////////////////////////////////
 //Selecionar todos usuarios
 routes.get('/users', UserController.getAllUser);
