@@ -5,9 +5,9 @@
   "engines": {
     "node": "12.x"
   },
-  "main": "src/index.js",
+  "main": "node src/index.js",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "node src/index.js"
   },
   
   "author": "",
