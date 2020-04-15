@@ -10,7 +10,7 @@ module.exports = {
             const Id = crypto.randomBytes(4).toString('HEX'); //gera um ID automaticamente criptografado
 
             await connection('Product').insert({
-                Id, Name, DateDue, AlertDateDue, UserId
+                Id, Name, DateDue, AlertDateDue, UserId, Quantity
             });
             return response.status(201).json({ Id, Name, DateDue, AlertDateDue, UserId, Quantity });
         }
@@ -78,7 +78,7 @@ module.exports = {
         }
 
         await connection('Product').update({
-            Name, DateDue, AlertDateDue, UserId
+            Name, DateDue, AlertDateDue, UserId, Quantity
         });
         return response.status(201).json({ Id, Name, DateDue, AlertDateDue, UserId, Quantity });
     }
