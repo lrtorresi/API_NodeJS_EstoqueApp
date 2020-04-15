@@ -22,6 +22,9 @@ module.exports = {
     async getAllProduct(request, response) {
         try {
             const AllProduct = await connection('Product').select('*').orderBy('Name');
+            if(AllProduct.Quantity == null) {
+                AllProduct.Quantity = 0;
+            }
             
             return response.status(200).json(AllProduct);
         }
