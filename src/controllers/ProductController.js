@@ -8,7 +8,9 @@ module.exports = {
         try {
             const { Name, DateDue, AlertDateDue, UserId, Quantity } = request.body; //campos que o json vai aceitar
             const Id = crypto.randomBytes(4).toString('HEX'); //gera um ID automaticamente criptografado
-
+            if (Quantity == null) {
+                Quantity = 0
+            }
             await connection('Product').insert({
                 Id, Name, DateDue, AlertDateDue, UserId, Quantity
             });
@@ -20,12 +22,11 @@ module.exports = {
 
     //selecionar todos produtos
     async getAllProduct(request, response) {
+
         try {
             const AllProduct = await connection('Product').select('*').orderBy('Name');
-            if(AllProduct.Quantity == null) {
-                AllProduct.Quantity = 0;
-            }
-            
+            console.log(AllProduct.Quantity);
+
             return response.status(200).json(AllProduct);
         }
         catch (ex) { return response.status(400).json({ msg: 'Erro ao pesquisar produtos.' }) }
@@ -37,7 +38,7 @@ module.exports = {
         try {
             const { Name } = request.body;
             const ProductName = await connection('Product').where('Name', Name).select('*').first();
-            
+
             if (ProductName == null) {
                 return response.status(404).json({ msg: 'Produto não encontrado.' })
             }
@@ -68,24 +69,24 @@ module.exports = {
 
 
     //editar produto
-    async putProduct(request, response){
-        try{
-        const {Id} = request.params;
-        const {Name, DateDue, AlertDateDue, UserId, Quantity} = request.body;
+    async putProduct(request, response) {
+        try {
+            const { Id } = request.params;
+            const { Name, DateDue, AlertDateDue, UserId, Quantity } = request.body;
 
-        //verificando se o produto existe
-        const ProductId = await connection('Product').where('Id', Id).select('Id').first();
+            //verificando se o produto existe
+            const ProductId = await connection('Product').where('Id', Id).select('Id').first();
 
-        if (ProductId == null) {
-            return response.status(404).json({ msg: 'Produto não encontrado.' })
+            if (ProductId == null) {
+                return response.status(404).json({ msg: 'Produto não encontrado.' })
+            }
+
+            await connection('Product').update({
+                Name, DateDue, AlertDateDue, UserId, Quantity
+            });
+            return response.status(201).json({ Id, Name, DateDue, AlertDateDue, UserId, Quantity });
         }
-
-        await connection('Product').update({
-            Name, DateDue, AlertDateDue, UserId, Quantity
-        });
-        return response.status(201).json({ Id, Name, DateDue, AlertDateDue, UserId, Quantity });
-    }
-    catch (ex) { return response.status(400).json({ msg: 'Erro ao editar produto.' }) }  
+        catch (ex) { return response.status(400).json({ msg: 'Erro ao editar produto.' }) }
     },
 
 }
