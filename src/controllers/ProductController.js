@@ -6,13 +6,13 @@ module.exports = {
     //Criar novo produto
     async createProduct(request, response) {
         try {
-            const { Name, DateDue, AlertDateDue, UserId } = request.body; //campos que o json vai aceitar
+            const { Name, DateDue, AlertDateDue, UserId, Quantity } = request.body; //campos que o json vai aceitar
             const Id = crypto.randomBytes(4).toString('HEX'); //gera um ID automaticamente criptografado
 
             await connection('Product').insert({
                 Id, Name, DateDue, AlertDateDue, UserId
             });
-            return response.status(201).json({ Id, Name, DateDue, AlertDateDue, UserId });
+            return response.status(201).json({ Id, Name, DateDue, AlertDateDue, UserId, Quantity });
         }
         catch (ex) { return response.status(400).json({ msg: 'Erro ao cadastrar novo produto.' }) }
     },
@@ -68,7 +68,7 @@ module.exports = {
     async putProduct(request, response){
         try{
         const {Id} = request.params;
-        const {Name, DateDue, AlertDateDue, UserId} = request.body;
+        const {Name, DateDue, AlertDateDue, UserId, Quantity} = request.body;
 
         //verificando se o produto existe
         const ProductId = await connection('Product').where('Id', Id).select('Id').first();
@@ -80,7 +80,7 @@ module.exports = {
         await connection('Product').update({
             Name, DateDue, AlertDateDue, UserId
         });
-        return response.status(201).json({ Id, Name, DateDue, AlertDateDue, UserId });
+        return response.status(201).json({ Id, Name, DateDue, AlertDateDue, UserId, Quantity });
     }
     catch (ex) { return response.status(400).json({ msg: 'Erro ao editar produto.' }) }  
     },
