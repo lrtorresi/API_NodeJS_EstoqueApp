@@ -9,7 +9,6 @@
   "scripts": {
     "start": "node index.js"
   },
-  
   "author": "",
   "license": "MIT",
   "dependencies": {
@@ -30,5 +29,4 @@
   "devDependencies": {
     "nodemon": "^2.0.2"
   }
-  
 }

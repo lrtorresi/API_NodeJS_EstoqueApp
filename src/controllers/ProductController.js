@@ -25,7 +25,6 @@ module.exports = {
 
         try {
             const AllProduct = await connection('Product').select('*').orderBy('Name');
-            console.log(AllProduct.Quantity);
 
             return response.status(200).json(AllProduct);
         }

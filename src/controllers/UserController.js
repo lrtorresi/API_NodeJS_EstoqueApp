@@ -27,6 +27,23 @@ module.exports = {
     },
 
 
+    //selecionar usuario pelo E-mail e Senha
+    async getUserLogin(request, response) {
+        try {
+            const { Email, Password } = request.body; //campos que o json vai aceitar
+
+            const UserLogin = await connection('User').where('Email', Email).where('Password', Password).select('Id', 'Email');
+
+            if(UserLogin == ''){
+                return response.status(400).json({ msg: 'Usuario não encontrado.' })
+            }
+            
+            return response.json(UserLogin);
+        }
+        catch (ex) { return response.status(400).json({ msg: 'Erro ao selecionar usuario.' }) }
+    },
+
+
     //deletar usuario
     async deleteUser(request, response) {
         try {

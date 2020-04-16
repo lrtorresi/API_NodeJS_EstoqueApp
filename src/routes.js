@@ -19,7 +19,8 @@ routes.post('/user', UserController.createUser);
 //Deletar usuario
 routes.delete('/User/:Id', UserController.deleteUser);
 
-
+//Login do usuario (E-mail e Senha)
+routes.post('/user/login', UserController.getUserLogin);
 
 ////////////////////////////////////// Segmentos //////////////////////////////////////
 //Criar novo segmento
