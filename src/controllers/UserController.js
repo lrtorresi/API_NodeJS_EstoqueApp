@@ -34,10 +34,10 @@ module.exports = {
 
             const UserLogin = await connection('User').where('Email', Email).where('Password', Password).select('Id', 'Email');
 
-            if(UserLogin == ''){
+            if (UserLogin == '') {
                 return response.status(400).json({ msg: 'Usuario não encontrado.' })
             }
-            
+
             return response.json(UserLogin);
         }
         catch (ex) { return response.status(400).json({ msg: 'Erro ao selecionar usuario.' }) }
@@ -67,8 +67,13 @@ module.exports = {
     //Criar novo usuario
     async createUser(request, response) {
         try {
+            
             const { Name, Cnpj, NameStore, Cep, Address, Email, Password, SegmentStore } = request.body; //campos que o json vai aceitar
             const Id = crypto.randomBytes(4).toString('HEX'); //gera um ID automaticamente criptografado
+            const NameStore = 'default';
+            const Cep = 'default';
+            const Address = 'default';
+            const SegmentStore = 'Outros';
 
             await connection('User').insert({
                 Id, Name, Cnpj, NameStore, Cep, Address, Email, Password, SegmentStore,
