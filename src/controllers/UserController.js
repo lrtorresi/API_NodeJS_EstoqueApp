@@ -67,13 +67,14 @@ module.exports = {
     //Criar novo usuario
     async createUser(request, response) {
         try {
-            
-            const { Name, Cnpj, NameStore, Cep, Address, Email, Password, SegmentStore } = request.body; //campos que o json vai aceitar
+
+            const { Name, Cnpj, Email, Password} = request.body; //campos que o json vai aceitar
             const Id = crypto.randomBytes(4).toString('HEX'); //gera um ID automaticamente criptografado
-            const NameStore = 'default';
-            const Cep = 'default';
-            const Address = 'default';
-            const SegmentStore = 'Outros';
+            
+            const NameStore = 'padrão';
+            const Cep = 'padrão';
+            const Address = 'padrão';
+            const SegmentStore = 'padrão';
 
             await connection('User').insert({
                 Id, Name, Cnpj, NameStore, Cep, Address, Email, Password, SegmentStore,
