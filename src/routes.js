@@ -14,7 +14,7 @@ routes.get('/users', UserController.getAllUser);
 routes.get('/user/:Id', UserController.getUserById);
 
 //Criar novo usuario
-routes.post('/user', UserController.createUser);
+routes.post('/user/newUser', UserController.createUser);
 
 //Deletar usuario
 routes.delete('/User/:Id', UserController.deleteUser);
