@@ -72,7 +72,7 @@ module.exports = {
             const Id = crypto.randomBytes(4).toString('HEX'); //gera um ID automaticamente criptografado
             
             const NameStore = 'padrão';
-            const Cep = 'padrão';
+            const Cep = 0;
             const Address = 'padrão';
             const SegmentStore = 'padrão';
 

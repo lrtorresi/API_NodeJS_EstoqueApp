@@ -6,15 +6,18 @@ module.exports = {
     //Criar novo produto
     async createProduct(request, response) {
         try {
-            const { Name, DateDue, AlertDateDue, UserId, Quantity } = request.body; //campos que o json vai aceitar
+            const { CodProduct, Name, DateDue, AlertDateDue, UserId, Quantity } = request.body; //campos que o json vai aceitar
             const Id = crypto.randomBytes(4).toString('HEX'); //gera um ID automaticamente criptografado
             if (Quantity == null) {
                 Quantity = 0
             }
+            if (CodProduct == null){
+                CodProduct = 0
+            }
             await connection('Product').insert({
-                Id, Name, DateDue, AlertDateDue, UserId, Quantity
+                Id, CodProduct, Name, DateDue, AlertDateDue, UserId, Quantity
             });
-            return response.status(201).json({ Id, Name, DateDue, AlertDateDue, UserId, Quantity });
+            return response.status(201).json({ Id, CodProduct,, Name, DateDue, AlertDateDue, UserId, Quantity });
         }
         catch (ex) { return response.status(400).json({ msg: 'Erro ao cadastrar novo produto.' }) }
     },
