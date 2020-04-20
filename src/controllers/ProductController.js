@@ -29,7 +29,7 @@ module.exports = {
     async getAllProduct(request, response) {
 
         try {
-            const AllProduct = await connection('Product').select('*').orderBy('Name');
+            const AllProduct = await connection('Product').select('*').orderBy('DateDue');
 
             return response.status(200).json(AllProduct);
         }
