@@ -39,7 +39,10 @@ routes.delete('/Segment/:Id', SegmentController.deleteSegmento);
 routes.post('/Product', ProductController.createProduct);
 
 //Selecionar todos os produtos
-routes.get('/Products', ProductController.getAllProduct);   
+routes.get('/Products', ProductController.getAllProduct);
+
+//Selecionar produto por Codigo do Usuario
+routes.get('/Products/:Id', ProductController.getProductUserId);
 
 //Selecionar produto por nome
 routes.get('/Product', ProductController.getProductName);  
