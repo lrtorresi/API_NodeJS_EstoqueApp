@@ -17,7 +17,7 @@ module.exports = {
             await connection('Product').insert({
                 Id, CodProduct, Name, DateDue, AlertDateDue, UserId, Quantity
             });
-            return response.status(201).json({ Id, CodProduct,, Name, DateDue, AlertDateDue, UserId, Quantity });
+            return response.status(201).json({ Id, CodProduct, Name, DateDue, AlertDateDue, UserId, Quantity });
         }
         catch (ex) { return response.status(400).json({ msg: 'Erro ao cadastrar novo produto.' }) }
     },
