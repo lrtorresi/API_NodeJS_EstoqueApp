@@ -63,7 +63,7 @@ module.exports = {
                 return response.status(404).json({ msg: 'Nenhum produto não encontrado.' })
             }
 
-            return response.status(200).json({ ProductName });
+            return response.status(200).json( ProductName );
         }
         catch (ex) { return response.status(400).json({ msg: 'Erro ao pesquisar produto.' }) }
     },
