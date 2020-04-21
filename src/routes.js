@@ -42,7 +42,7 @@ routes.post('/Product', ProductController.createProduct);
 routes.get('/Products', ProductController.getAllProduct);
 
 //Selecionar produto por Codigo do Usuario
-routes.get('/Products/UserId', ProductController.getProductUserId);
+routes.get('/Products/:Id', ProductController.getProductUserId);
 
 //Selecionar produto por nome
 routes.get('/Product', ProductController.getProductName);  

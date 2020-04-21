@@ -55,7 +55,7 @@ module.exports = {
      //selecionar produto por Id do User
      async getProductUserId(request, response) {
         try {
-            const { Id } = request.body;
+            const { Id } = request.params;
             
             const ProductName = await connection('Product').where('UserId', Id).select('*').orderBy('DateDue');
 
