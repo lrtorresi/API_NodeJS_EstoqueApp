@@ -55,10 +55,9 @@ module.exports = {
      //selecionar produto por Id do User
      async getProductUserId(request, response) {
         try {
+            const { Id } = request.body;
             
-            const { Id } = request.params;
-            
-            const ProductName = await connection('Product').where('UserId', Id).select('*').orderBy('Name');
+            const ProductName = await connection('Product').where('UserId', Id).select('*').orderBy('DateDue');
 
             if (ProductName == null) {
                 return response.status(404).json({ msg: 'Nenhum produto não encontrado.' })
