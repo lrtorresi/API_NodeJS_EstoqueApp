@@ -101,7 +101,7 @@ module.exports = {
                 return response.status(404).json({ msg: 'Produto não encontrado.' })
             }
 
-            await connection('Product').update({
+            await connection('Product').where('Id', Id).update({
                 Name, DateDue, AlertDateDue, UserId, Quantity
             });
             return response.status(201).json({ Id, Name, DateDue, AlertDateDue, UserId, Quantity });
