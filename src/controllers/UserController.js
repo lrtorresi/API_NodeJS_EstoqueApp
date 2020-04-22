@@ -103,7 +103,7 @@ module.exports = {
             }
 
             sendMail.SendMail(Email, userPassword.Password); //Função para enviar Email
-            console.log(sendMail.SendMail)
+            
             return response.status(202).json({msg: 'E-mail enviado ao usuario'});
             
         }

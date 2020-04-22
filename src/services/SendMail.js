@@ -9,17 +9,25 @@ module.exports = {
 
 
         var remetente = nodemailer.createTransport({
-            host: 'smtp.live.com',
-            secureConnection: false,
-            service: 'hotmail',
-            port: 587,
-            // secure: true,
+            /*  host: 'smtp.live.com',
+             secureConnection: false,
+             //service: 'hotmail',
+             port: 587,
+             // secure: true,
+             auth: {
+                 user: 'lrtorresi@hotmail.com',
+                 pass: 'Chrisrod123!'
+             },
+             tls: {
+                 ciphers: 'SSLv3'
+             } */
+
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true, // use SSL
             auth: {
-                user: 'lrtorresi@hotmail.com',
-                pass: 'Chrisrod123!'
-            },
-            tls: {
-                ciphers: 'SSLv3'
+                user: 'ltorresi@mdc.com.br',
+                pass: 'Chrisrod123'
             }
         });
 
@@ -272,14 +280,13 @@ module.exports = {
         remetente.sendMail(emailASerEnviado, function (error) {
             if (error) {
                 console.log(error);
-                
-            } 
-            
+
+            }
+
             else {
                 console.log('Email enviado com sucesso.');
-               
             }
-            
+
         });
 
     }
