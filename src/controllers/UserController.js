@@ -103,7 +103,9 @@ module.exports = {
             }
 
             sendMail.SendMail(Email, userPassword.Password); //Função para enviar Email
-            return response.status(202).json({ msg: 'Email enviado ao usuario cadastrado' })
+            console.log(sendMail.SendMail)
+            return response.status(202).json({msg: 'E-mail enviado ao usuario'});
+            
         }
 
         catch (ex) { return response.status(400).json({ msg: 'Erro ao enviar e-mail. Tente novamente mais tarde.' }) }

@@ -5,30 +5,31 @@ var nodemailer = require('nodemailer');
 
 module.exports = {
 
-    SendMail (Email, Password){
-console.log('Entrou no sendmail', Email, Password);
-    var remetente = nodemailer.createTransport({
-        host: 'smtp.live.com',
-        secureConnection: false,
-        //service: 'hotmail',
-        port: 587,
-        // secure: true,
-        auth: {
-            user: 'lrtorresi@hotmail.com',
-            pass: 'Chrisrod123!'
-        },
-        tls: {
-            ciphers: 'SSLv3'
-        }
-    });
+    SendMail(Email, Password) {
 
 
-    var emailASerEnviado = {
-        from: '"MDC Software" <lrtorresi@hotmail.com>',
-        to: Email,
-        subject: 'Recuperação de Senha',
-        text: '',
-        html: `<div style="background-color:#f0f0f0">
+        var remetente = nodemailer.createTransport({
+            host: 'smtp.live.com',
+            secureConnection: false,
+            service: 'hotmail',
+            port: 587,
+            // secure: true,
+            auth: {
+                user: 'lrtorresi@hotmail.com',
+                pass: 'Chrisrod123!'
+            },
+            tls: {
+                ciphers: 'SSLv3'
+            }
+        });
+
+
+        var emailASerEnviado = {
+            from: '"MDC Software" <lrtorresi@hotmail.com>',
+            to: Email,
+            subject: 'Recuperação de Senha',
+            text: '',
+            html: `<div style="background-color:#f0f0f0">
         <div style="background:#f0f0f0;background-color:#f0f0f0;Margin:0px auto;max-width:600px">
           <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f0f0f0;background-color:#f0f0f0;width:100%">
             <tbody>
@@ -160,14 +161,14 @@ console.log('Entrou no sendmail', Email, Password);
                 <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word">
                   
         <div style="font-family:Raleway,Roboto,Arial,Helvetica Neue,Helvetica,sans-serif;font-size:13px;line-height:22px;text-align:left;color:black">
-          Olá, como vai?!<br><br>Estamos enviando esse email porque recebemos um pedido para recuperar a senha de acesso do login <strong><a href="mailto:`+ Email +`" target="_blank"></a></strong> ao serviço <strong>MDC Software - Controle de Estoque</strong>.<br>
+          Olá, como vai?!<br><br>Estamos enviando esse email porque recebemos um pedido para recuperar a senha de acesso do login <strong><a href="mailto:`+ Email + `" target="_blank"></a></strong> ao serviço <strong>MDC Software - Controle de Estoque</strong>.<br>
         </div>              
                 </td>
               </tr>                    
               <tr>
                 <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word">                          
         <div style="font-family:Raleway,Roboto,Arial,Helvetica Neue,Helvetica,sans-serif;font-size:18px;line-height:22px;text-align:center;color:#000000">
-         <strong> Senha: </strong> ` + Password +`
+         <strong> Senha: </strong> ` + Password + `
         </div>
                 </td>
               </tr>                    
@@ -266,15 +267,20 @@ console.log('Entrou no sendmail', Email, Password);
           
         </div>
         </div>`
-    };
+        };
 
-remetente.sendMail(emailASerEnviado, function (error) {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Email enviado com sucesso.');
-        }
-    });
+        remetente.sendMail(emailASerEnviado, function (error) {
+            if (error) {
+                console.log(error);
+                
+            } 
+            
+            else {
+                console.log('Email enviado com sucesso.');
+               
+            }
+            
+        });
 
-}
+    }
 }
