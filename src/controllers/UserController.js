@@ -1,6 +1,7 @@
 const connection = require('../database/connection'); //string de conexão
 const crypto = require('crypto');
 var nodemailer = require('nodemailer');
+const sendMail = require('../services/SendMail');
 
 //Funções executadas (chamadas pelas Rotas)
 module.exports = {
@@ -9,39 +10,7 @@ module.exports = {
     //selecionar todos usuarios
     async getAllUser(request, response) {
         try {
-            console.log('entrou no email');
 
-            var remetente = nodemailer.createTransport({
-                host: 'smtp.live.com',
-                secureConnection :  false ,
-                //service: 'hotmail',
-                port: 587,
-               // secure: true,
-                auth: {
-                    user: 'lrtorresi@hotmail.com',
-                    pass: 'Chrisrod123!'
-                },
-                tls:{
-                    ciphers: 'SSLv3'
-                }
-            });
-
-
-            var emailASerEnviado = {
-                from: 'lrtorresi@hotmail.com',
-                to: 'ltorresi@mdc.com.br',
-                subject: 'Enviando Email via API',
-                text: 'Estou te enviando este email via API MDC',
-            };
-
-
-            remetente.sendMail(emailASerEnviado, function (error) {
-                if (error) {
-                    console.log(error);
-                } else {
-                    console.log('Email enviado com sucesso.');
-                }
-            });
 
             const AllUser = await connection('User').select('*').orderBy('Name');
             return response.status(201).json(AllUser);
@@ -120,6 +89,23 @@ module.exports = {
     },
 
 
+    //Reenviar senha para o usuario
+    async recoverPasswordUser(request, response) {
 
+        try {
 
+            const { Email } = request.body;
+
+            const userPassword = await connection('User').where('Email', Email).select('Password').first();
+
+            if (userPassword == '') {
+                return response.status(401).json({ Error: 'Usario não foi encontrado.' })
+            }
+
+            sendMail.SendMail(Email, userPassword.Password); //Função para enviar Email
+            return response.status(202).json({ msg: 'Email enviado ao usuario cadastrado' })
+        }
+
+        catch (ex) { return response.status(400).json({ msg: 'Erro ao enviar e-mail. Tente novamente mais tarde.' }) }
+    }
 };
