@@ -9,10 +9,10 @@ module.exports = {
             var { CodProduct, Name, DateDue, AlertDateDue, UserId, Quantity } = request.body; //campos que o json vai aceitar
             const Id = crypto.randomBytes(4).toString('HEX'); //gera um ID automaticamente criptografado
            
-            if (CodProduct == ''){
+            if (CodProduct == '' || Quantity == null){
                 CodProduct = '0';
             }
-            if (Quantity == ''){
+            if (Quantity == '' || Quantity == null){
                 Quantity = 0;
             }
 
